@@ -1,21 +1,23 @@
-"use client";
+"use client"
 
-import { usePaginatedQuery } from "convex/react";
+import { usePaginatedQuery } from "convex/react"
 
-import { Navbar } from "./navbar";
-import { TemplatesGallery } from "./templates-gallery";
-import { DocumentsTable } from "./documents-table";
+import { Navbar } from "./navbar"
+import { TemplatesGallery } from "./templates-gallery"
+import { DocumentsTable } from "./documents-table"
 
-import { api } from "../../../convex/_generated/api";
-import { useSearchParam } from "@/hooks/use-search-param";
+import { api } from "../../../convex/_generated/api"
+import { useSearchParam } from "@/hooks/use-search-param"
 
 const Home = () => {
-  const [search] = useSearchParam();
+  const [search] = useSearchParam()
   const { results, status, loadMore } = usePaginatedQuery(
     api.documents.get,
     { search },
-    { initialNumItems: 5 }
-  );
+    { initialNumItems: 10 }
+  )
+
+  results.sort((a, b) => b._creationTime - a._creationTime)
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -24,10 +26,14 @@ const Home = () => {
       </div>
       <div className="mt-16">
         <TemplatesGallery />
-        <DocumentsTable documents={results} loadMore={loadMore} status={status} />
+        <DocumentsTable
+          documents={results}
+          loadMore={loadMore}
+          status={status}
+        />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
