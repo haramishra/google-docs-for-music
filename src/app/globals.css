@@ -4,6 +4,42 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  /* font-family: "Ome Bhatkhande English"; */
+}
+
+@font-face {
+  font-family: "Ome Bhatkhande Bangla";
+  src: url("/fonts/OmeBhatkhandeBangla.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ome Bhatkhande English";
+  src: url("/fonts/OmeBhatkhandeEnglish.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ome Bhatkhande Hindi";
+  src: url("/fonts/OmeBhatkhandeHindi.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ome Bhatkhande Punjabi";
+  src: url("/fonts/OmeBhatkhandePunjabi.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ome Swarlipi";
+  src: url("/fonts/OmeSwarlipi.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 @layer base {
@@ -292,5 +328,5 @@ body {
 }
 
 div[data-radix-popper-content-wrapper] {
-  z-index: 50!important
+  z-index: 50 !important;
 }

@@ -1,79 +1,81 @@
-"use client";
+"use client"
 
-import { useEditor, EditorContent } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
+import { useEditor, EditorContent } from "@tiptap/react"
+import StarterKit from "@tiptap/starter-kit"
 
-import TaskItem from "@tiptap/extension-task-item";
-import TaskList from "@tiptap/extension-task-list";
+import TaskItem from "@tiptap/extension-task-item"
+import TaskList from "@tiptap/extension-task-list"
 
-import Table from "@tiptap/extension-table";
-import TableCell from "@tiptap/extension-table-cell";
-import TableHeader from "@tiptap/extension-table-header";
-import TableRow from "@tiptap/extension-table-row";
+import Table from "@tiptap/extension-table"
+import TableCell from "@tiptap/extension-table-cell"
+import TableHeader from "@tiptap/extension-table-header"
+import TableRow from "@tiptap/extension-table-row"
 
-import Image from "@tiptap/extension-image";
-import ImageResize from "tiptap-extension-resize-image";
+import Image from "@tiptap/extension-image"
+import ImageResize from "tiptap-extension-resize-image"
 
-import Underline from "@tiptap/extension-underline";
-import FontFamily from "@tiptap/extension-font-family";
-import TextStyle from "@tiptap/extension-text-style";
+import Underline from "@tiptap/extension-underline"
+import FontFamily from "@tiptap/extension-font-family"
+import TextStyle from "@tiptap/extension-text-style"
 
-import { Color } from "@tiptap/extension-color";
-import Highlight from "@tiptap/extension-highlight";
+import { Color } from "@tiptap/extension-color"
+import Highlight from "@tiptap/extension-highlight"
 
-import TextAlign from "@tiptap/extension-text-align";
+import TextAlign from "@tiptap/extension-text-align"
 
-import Link from "@tiptap/extension-link";
+import Link from "@tiptap/extension-link"
 
-import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
-import { useStorage } from "@liveblocks/react";
+import { useLiveblocksExtension } from "@liveblocks/react-tiptap"
+import { useStorage } from "@liveblocks/react"
 
-import { useEditorStore } from "@/store/use-editor-store";
-import { FontSizeExtensions } from "@/extensions/font-size";
-import { LineHeightExtension } from "@/extensions/line-height";
-import { Ruler } from "./ruler";
-import { Threads } from "./threads";
-import { LEFT_MARGIN_DEFAULT, RIGHT_MARGIN_DEFAULT } from "@/constants/margins";
+import { useEditorStore } from "@/store/use-editor-store"
+import { FontSizeExtensions } from "@/extensions/font-size"
+import { LineHeightExtension } from "@/extensions/line-height"
+import { Ruler } from "./ruler"
+import { Threads } from "./threads"
+import { LEFT_MARGIN_DEFAULT, RIGHT_MARGIN_DEFAULT } from "@/constants/margins"
 
 interface EditorProps {
-  initialContent?: string | undefined;
+  initialContent?: string | undefined
 }
 
 export const Editor = ({ initialContent }: EditorProps) => {
-  const leftMargin = useStorage((root) => root.leftMargin) ?? LEFT_MARGIN_DEFAULT;
-  const rightMargin = useStorage((root) => root.rightMargin) ?? RIGHT_MARGIN_DEFAULT;
+  const leftMargin =
+    useStorage((root) => root.leftMargin) ?? LEFT_MARGIN_DEFAULT
+  const rightMargin =
+    useStorage((root) => root.rightMargin) ?? RIGHT_MARGIN_DEFAULT
 
   const liveblocks = useLiveblocksExtension({
     initialContent,
     offlineSupport_experimental: true,
-  });
-  const { setEditor } = useEditorStore();
+  })
+  const { setEditor } = useEditorStore()
 
   const editor = useEditor({
     immediatelyRender: false,
     onCreate({ editor }) {
-      setEditor(editor);
+      setEditor(editor)
     },
     onDestroy() {
-      setEditor(null);
+      setEditor(null)
     },
     onUpdate({ editor }) {
-      setEditor(editor);
+      setEditor(editor)
     },
     onSelectionUpdate({ editor }) {
-      setEditor(editor);
+      setEditor(editor)
     },
     onTransaction({ editor }) {
-      setEditor(editor);
+      setEditor(editor)
     },
     onFocus({ editor }) {
-      setEditor(editor);
+      setEditor(editor)
     },
     onBlur({ editor }) {
-      setEditor(editor);
+      setEditor(editor)
     },
     onContentError({ editor }) {
-      setEditor(editor);
+      setEditor(editor)
     },
     editorProps: {
       attributes: {
@@ -95,7 +97,9 @@ export const Editor = ({ initialContent }: EditorProps) => {
       Image,
       ImageResize,
       Underline,
-      FontFamily,
+      FontFamily.configure({
+        types: ["textStyle"],
+      }),
       TextStyle,
       Color,
       LineHeightExtension.configure({
@@ -116,7 +120,7 @@ export const Editor = ({ initialContent }: EditorProps) => {
       }),
       TaskItem.configure({ nested: true }),
     ],
-  });
+  })
 
   return (
     <div className="size-full overflow-x-auto bg-editor-bg px-4 print:p-0 print:bg-white print:overflow-visible">
@@ -126,5 +130,5 @@ export const Editor = ({ initialContent }: EditorProps) => {
         <Threads editor={editor} />
       </div>
     </div>
-  );
-};
+  )
+}
