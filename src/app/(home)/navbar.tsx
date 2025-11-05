@@ -1,7 +1,7 @@
-import Link from "next/link";
-import Image from "next/image";
-import { SearchInput } from "./search-input";
-import { UserButton, OrganizationSwitcher } from "@clerk/nextjs";
+import Link from "next/link"
+import Image from "next/image"
+import { SearchInput } from "./search-input"
+import { UserButton, OrganizationSwitcher } from "@clerk/nextjs"
 
 export const Navbar = () => {
   return (
@@ -10,7 +10,7 @@ export const Navbar = () => {
         <Link href="/">
           <Image src={"/logo.svg"} alt="Logo" width={36} height={36} />
         </Link>
-        <h3 className="text-xl">Docs</h3>
+        <h3 className="text-xl">Notesync</h3>
       </div>
       <SearchInput />
       <div className="flex gap-3 items-center pl-6">
@@ -23,5 +23,5 @@ export const Navbar = () => {
         <UserButton />
       </div>
     </nav>
-  );
-};
+  )
+}
