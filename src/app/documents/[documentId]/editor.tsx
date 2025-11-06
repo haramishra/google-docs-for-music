@@ -97,9 +97,7 @@ export const Editor = ({ initialContent }: EditorProps) => {
       Image,
       ImageResize,
       Underline,
-      FontFamily.configure({
-        types: ["textStyle"],
-      }),
+      FontFamily,
       TextStyle,
       Color,
       LineHeightExtension.configure({
